@@ -13,13 +13,17 @@ public class Main {
             Session session = sessionFactory.openSession();
 
             Transaction transaction = session.beginTransaction();
-
+/*
             Student student = new Student();
-            student.setFirstName("Ivan");
-            student.setLastName("Ivanov");
-            student.setAge(25);
-
+            student.setFirstName("Svetlana");
+            student.setLastName("Petrova");
+            student.setAge(18);
             session.save(student);
+  */
+            Student student = session.get(Student.class, 1);
+            //System.out.println(student);
+            student.setAge(30);
+
             transaction.commit();
 
             session.close();
