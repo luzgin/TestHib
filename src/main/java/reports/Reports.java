@@ -29,4 +29,14 @@ public class Reports {
 
         return hibernateQuery.list();
     }
+
+    public List<StudentAddressReport> getStudentAddress (String firstName, String lastName, Session session){
+        String query = "select new reports.StudentAddressReport(s.firstName, s.lastName, s.studentAddress.city, s.studentAddress.address) " +
+                "from Student s " +
+                "where s.firstName = :firstName and s.lastName = :lastName";
+        Query hibernateQery = session.createQuery(query);
+        hibernateQery.setParameter("firstName", firstName);
+        hibernateQery.setParameter("lastName", lastName);
+        return hibernateQery.list();
+    }
 }
